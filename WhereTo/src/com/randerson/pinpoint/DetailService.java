@@ -8,8 +8,9 @@
  * date			Jul 11, 2013
  * 
  */
-package com.randerson.whereto;
+package com.randerson.pinpoint;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.randerson.classes.IOManager;
@@ -43,7 +44,17 @@ public class DetailService extends IntentService {
 			
 			Log.i("Detail Service", "On Handle Intent");
 			
-			URL url = (URL) mainBundle.get(URL_KEY);
+			// the url to handle
+			URL url = null;
+			
+			try {
+				// try to create a new url object with the url string
+				url = new URL(mainBundle.getString(URL_KEY));
+			} catch (MalformedURLException e1) {
+				
+				Log.e("MalformedURLException", "exception constructing url from string in DetailService.java");
+			}
+			
 			Messenger messenger = (Messenger) mainBundle.get(MESSENGER_KEY);
 			
 			// checks if there is a network connection

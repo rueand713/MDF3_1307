@@ -14,14 +14,20 @@ import java.util.ArrayList;
 
 public class UniArray {
 
-	private ArrayList<String> OBJECT_KEYS = new ArrayList<String>();
-	private ArrayList<Object> OBJECT_PAIRS = new ArrayList<Object>();
+	private ArrayList<String> OBJECT_KEYS = null;
+	private ArrayList<Object> OBJECT_PAIRS = null;
 	
-	private ArrayList<String> STRING_KEYS = new ArrayList<String>();
-	private ArrayList<String> STRING_PAIRS = new ArrayList<String>();
+	private ArrayList<String> STRING_KEYS = null;
+	private ArrayList<String> STRING_PAIRS = null;
 	
 	// constructor
-	public UniArray(){}
+	public UniArray(){
+		
+		OBJECT_KEYS = new ArrayList<String>();
+		OBJECT_PAIRS = new ArrayList<Object>();
+		STRING_KEYS = new ArrayList<String>();
+		STRING_PAIRS = new ArrayList<String>();
+	}
 	
 	// method for returning all objects in array
 	public Object[] getAllObjects()

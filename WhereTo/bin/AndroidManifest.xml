@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.randerson.whereto"
+    package="com.randerson.pinpoint"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,10 +9,10 @@
         android:targetSdkVersion="17" />
     
     <permission
-        android:name="com.randerson.whereto.permission.MAPS_RECEIVE"
+        android:name="com.randerson.pinpoint.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
 	
-	<uses-permission android:name="com.randerson.whereto.permission.MAPS_RECEIVE"/>
+	<uses-permission android:name="com.randerson.pinpoint.permission.MAPS_RECEIVE"/>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -31,7 +31,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.randerson.whereto.MainActivity"
+            android:name="com.randerson.pinpoint.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +47,8 @@
         <meta-data
     android:name="com.google.android.maps.v2.API_KEY"
     android:value="AIzaSyABtNbHQwWVsa4Ca9NwYXyK7fqtjGZMbIs"/>
+        <service android:name="DetailService"></service>
+        <activity android:name="InputActivity"></activity>
     </application>
 
 </manifest>

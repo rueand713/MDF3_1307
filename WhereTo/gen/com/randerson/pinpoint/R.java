@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.randerson.whereto;
+package com.randerson.pinpoint;
 
 public final class R {
     public static final class attr {
@@ -182,19 +182,28 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020018;
     }
     public static final class id {
-        public static final int action_settings=0x7f050009;
+        public static final int action_settings=0x7f050011;
         public static final int addDataBtn=0x7f050007;
+        public static final int address=0x7f050008;
+        public static final int addressField=0x7f05000a;
+        public static final int cityField=0x7f05000b;
+        public static final int countryField=0x7f05000d;
+        public static final int doneBtn=0x7f050010;
         public static final int hybrid=0x7f050004;
-        public static final int list=0x7f050008;
         public static final int map=0x7f050006;
         public static final int mapContainer=0x7f050005;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
+        public static final int noteField=0x7f05000f;
+        public static final int note_instructions=0x7f05000e;
         public static final int satellite=0x7f050002;
+        public static final int stateField=0x7f05000c;
         public static final int terrain=0x7f050003;
+        public static final int titleField=0x7f050009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int input_activity=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -202,6 +211,7 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f060016;
         public static final int add_button=0x7f060017;
+        public static final int address=0x7f06001c;
         public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
@@ -212,6 +222,8 @@ containing a value of this type.
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
         public static final int auth_client_requested_by_msg=0x7f060011;
+        public static final int blank=0x7f060018;
+        public static final int city=0x7f06001a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -267,6 +279,9 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f06000e;
+        public static final int country=0x7f06001d;
+        public static final int done_button=0x7f06001e;
+        public static final int instructions=0x7f060019;
         /**  Location client code resources (prefix with location_client) 
 
         Begin strings for location.reporting
@@ -278,6 +293,10 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_age_under_13=0x7f060012;
         public static final int location_client_ulr_inactive_age_unknown=0x7f060013;
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
+        public static final int note_info=0x7f060020;
+        public static final int note_title=0x7f06001f;
+        public static final int state=0x7f06001b;
+        public static final int title=0x7f060021;
     }
     public static final class style {
         /** 
@@ -314,20 +333,20 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MapAttrs_cameraBearing com.randerson.whereto:cameraBearing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLat com.randerson.whereto:cameraTargetLat}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLng com.randerson.whereto:cameraTargetLng}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTilt com.randerson.whereto:cameraTilt}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraZoom com.randerson.whereto:cameraZoom}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_mapType com.randerson.whereto:mapType}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiCompass com.randerson.whereto:uiCompass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiRotateGestures com.randerson.whereto:uiRotateGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiScrollGestures com.randerson.whereto:uiScrollGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiTiltGestures com.randerson.whereto:uiTiltGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomControls com.randerson.whereto:uiZoomControls}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomGestures com.randerson.whereto:uiZoomGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_useViewLifecycle com.randerson.whereto:useViewLifecycle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_zOrderOnTop com.randerson.whereto:zOrderOnTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing com.randerson.pinpoint:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat com.randerson.pinpoint:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng com.randerson.pinpoint:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt com.randerson.pinpoint:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom com.randerson.pinpoint:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType com.randerson.pinpoint:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass com.randerson.pinpoint:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures com.randerson.pinpoint:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures com.randerson.pinpoint:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures com.randerson.pinpoint:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls com.randerson.pinpoint:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures com.randerson.pinpoint:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle com.randerson.pinpoint:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop com.randerson.pinpoint:zOrderOnTop}</code></td><td></td></tr>
            </table>
            @see #MapAttrs_cameraBearing
            @see #MapAttrs_cameraTargetLat
@@ -351,7 +370,7 @@ containing a value of this type.
             0x7f01000c, 0x7f01000d
         };
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#cameraBearing}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#cameraBearing}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -365,7 +384,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#cameraTargetLat}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#cameraTargetLat}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -379,7 +398,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#cameraTargetLng}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#cameraTargetLng}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -393,7 +412,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#cameraTilt}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#cameraTilt}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -407,7 +426,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#cameraZoom}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#cameraZoom}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -421,7 +440,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#mapType}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#mapType}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -441,7 +460,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_mapType = 0;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiCompass}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiCompass}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -455,7 +474,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiRotateGestures}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiRotateGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -469,7 +488,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiScrollGestures}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiScrollGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -483,7 +502,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiTiltGestures}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiTiltGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -497,7 +516,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiZoomControls}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiZoomControls}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -511,7 +530,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#uiZoomGestures}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#uiZoomGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -525,7 +544,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#useViewLifecycle}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#useViewLifecycle}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -539,7 +558,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
-          <p>This symbol is the offset where the {@link com.randerson.whereto.R.attr#zOrderOnTop}
+          <p>This symbol is the offset where the {@link com.randerson.pinpoint.R.attr#zOrderOnTop}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
