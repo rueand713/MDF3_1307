@@ -2,16 +2,19 @@ package com.randerson.pinpoint;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class InputActivity extends Activity {
 
 	String[] returnData;
+	boolean okApp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +22,16 @@ public class InputActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
 		setContentView(R.layout.input_activity);
 		
 		// set the return string to null for default
 		returnData = new String[] {null, null, null};
+		
+		// set the default bool
+		okApp = false;
 		
 		Button doneBtn = (Button) findViewById(R.id.doneBtn);
 		
@@ -98,6 +107,9 @@ public class InputActivity extends Activity {
 				returnData[1] = notes;
 				returnData[2] = title;
 				
+				// the app should return ok
+				okApp = true;
+				
 				// end the activity
 				finish();
 			}
@@ -107,15 +119,18 @@ public class InputActivity extends Activity {
 	@Override
 	public void finish() {
 		
-		// create an intent to pass back to the calling activity
-		Intent data = new Intent();
-		
-		// store the return data in the intent extras
-		data.putExtra("params", returnData[0]);
-		data.putExtra("notes", returnData[1]);
-		data.putExtra("title", returnData[2]);
-		
-		setResult(RESULT_OK, data);
+		if (okApp == true)
+		{
+			// create an intent to pass back to the calling activity
+			Intent data = new Intent();
+			
+			// store the return data in the intent extras
+			data.putExtra("params", returnData[0]);
+			data.putExtra("notes", returnData[1]);
+			data.putExtra("title", returnData[2]);
+			
+			setResult(RESULT_OK, data);
+		}
 		
 		super.finish();
 	}
