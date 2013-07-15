@@ -182,24 +182,31 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020018;
     }
     public static final class id {
-        public static final int action_settings=0x7f050011;
-        public static final int addDataBtn=0x7f050007;
-        public static final int address=0x7f050008;
-        public static final int addressField=0x7f05000a;
-        public static final int cityField=0x7f05000b;
-        public static final int countryField=0x7f05000d;
-        public static final int doneBtn=0x7f050010;
+        public static final int action_settings=0x7f050018;
+        public static final int addDataBtn=0x7f050008;
+        public static final int address=0x7f05000f;
+        public static final int addressField=0x7f050011;
+        public static final int cancelBtn=0x7f05000b;
+        public static final int cityField=0x7f050012;
+        public static final int countryField=0x7f050014;
+        public static final int details_a=0x7f050007;
+        public static final int details_b=0x7f050009;
+        public static final int doneBtn=0x7f050017;
         public static final int hybrid=0x7f050004;
         public static final int map=0x7f050006;
         public static final int mapContainer=0x7f050005;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int noteField=0x7f05000f;
-        public static final int note_instructions=0x7f05000e;
+        public static final int noteField=0x7f050016;
+        public static final int note_instructions=0x7f050015;
+        public static final int removeBtn=0x7f05000a;
         public static final int satellite=0x7f050002;
-        public static final int stateField=0x7f05000c;
+        public static final int stateField=0x7f050013;
         public static final int terrain=0x7f050003;
-        public static final int titleField=0x7f050009;
+        public static final int titleField=0x7f050010;
+        public static final int updateBtn=0x7f05000e;
+        public static final int update_note=0x7f05000d;
+        public static final int update_title=0x7f05000c;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -223,6 +230,7 @@ containing a value of this type.
          */
         public static final int auth_client_requested_by_msg=0x7f060011;
         public static final int blank=0x7f060018;
+        public static final int cancel_button=0x7f060024;
         public static final int city=0x7f06001a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -295,8 +303,10 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
         public static final int note_info=0x7f060020;
         public static final int note_title=0x7f06001f;
+        public static final int remove_button=0x7f060023;
         public static final int state=0x7f06001b;
         public static final int title=0x7f060021;
+        public static final int update_button=0x7f060022;
     }
     public static final class style {
         /** 

@@ -26,7 +26,7 @@ import android.util.Log;
 
 public class FileSystem {
 	// method for reading string data from the device
-		public static String readStringFile(Context context, String name, Boolean isInternal)
+		public static String readStringFile(Context context, String name, boolean isInternal)
 		{
 			// create the method fields required for reading the file
 			File file;
@@ -95,12 +95,12 @@ public class FileSystem {
 		}
 		
 		// method for saving string data to device storage
-		public static Boolean writeStringFile(Context context, String data, String name, Boolean isInternal)
+		public static boolean writeStringFile(Context context, String data, String name, boolean isInternal)
 		{
 			// create the method fields required for writing the file
 			File file;
 			FileOutputStream fileOut;
-			Boolean operationSuccess = true;
+			boolean operationSuccess = true;
 			
 			try {
 				
@@ -136,7 +136,7 @@ public class FileSystem {
 		}
 		
 		// method for reading string data from the device
-			public static Object readObjectFile(Context context, String name, Boolean isInternal)
+			public static Object readObjectFile(Context context, String name, boolean isInternal)
 			{
 				// create the method fields required for reading the file
 				File file;
@@ -190,13 +190,13 @@ public class FileSystem {
 			}
 		
 		// method for saving object data to device storage
-		public static Boolean writeObjectFile(Context context, Object data, String name, Boolean isInternal)
+		public static boolean writeObjectFile(Context context, Object data, String name, boolean isInternal)
 		{
 			// create the method fields required for writing the file
 			File file;
 			FileOutputStream fileOut;
 			ObjectOutputStream objectOut;
-			Boolean operationSuccess = true;
+			boolean operationSuccess = true;
 			
 			try {
 				
@@ -230,6 +230,7 @@ public class FileSystem {
 			} catch (IOException e) {
 				operationSuccess = false;
 				Log.e("FAILED WRITE", "File did not write successfully.");
+				Log.e("IOException", e.toString());
 			}
 			
 			// return whether the operation was successful or not

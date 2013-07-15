@@ -10,12 +10,10 @@
  */
 package com.randerson.pinpoint;
 
-import java.util.HashMap;
-import java.util.Set;
+import libs.UniArray;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.randerson.classes.FileSystem;
 import com.randerson.classes.InterfaceManager;
@@ -28,6 +26,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
@@ -35,7 +34,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 @SuppressLint("HandlerLeak")
 public class MainActivity extends Activity {
@@ -50,9 +53,11 @@ public class MainActivity extends Activity {
 	String addressData;
 	String snippet;
 	String title;
-	HashMap<String, Marker> mapData;
+	UniArray mapData;
 	Messenger intentMessenger;
 	GoogleMap map;
+	Marker currentMarker;
+	EditText currentField;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class MainActivity extends Activity {
 		UIFactory = new InterfaceManager(this);
 		
 		// create the map data object for storing the user data
-		mapData = new HashMap<String, Marker>();
+		mapData = new UniArray();
 		
 		// get the fragment from the layout file
 		MapFragment mf = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -164,6 +169,75 @@ public class MainActivity extends Activity {
 					startActivityForResult(dialog, 0);
 				}
 			});
+			
+			// create the button from the layout file
+			Button updateBtn = (Button) findViewById(R.id.updateBtn);
+			
+			// set the click listener for the button
+			updateBtn.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					// create editText object references to layout
+					EditText titleField = (EditText) findViewById(R.id.update_title);
+					EditText noteField = (EditText) findViewById(R.id.update_note);
+					
+					// string objects for holding the text data of the edit texts
+					String title = titleField.getText().toString();
+					String note = noteField.getText().toString();
+					
+					// update the selected marker's title and note
+					currentMarker.setTitle(title);
+					currentMarker.setSnippet(note);
+					
+					// toggle the default layout on
+					toggleLayouts(true);
+					
+					// save the updates
+					saveMarkers();
+				}
+			});
+			
+			// create the button from the layout file
+			Button cancelBtn = (Button) findViewById(R.id.cancelBtn);
+			
+			// set the click listener for the button
+			cancelBtn.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					// toggle the default layout on
+					toggleLayouts(true);
+				}
+			});
+			
+			// create the button from the layout file
+			Button removeBtn = (Button) findViewById(R.id.removeBtn);
+			
+			// set the click listener for the button
+			removeBtn.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+				
+					// get the marker title
+					String markerId = currentMarker.getTitle();
+					
+					// remove the marker from the memory array
+					mapData.removeObject(markerId);
+					
+					// remove the marker
+					currentMarker.remove();
+					
+					// toggle the default layout on
+					toggleLayouts(true);
+					
+					// save the updates
+					saveMarkers();
+				}
+			});
 		}
 	}
 
@@ -229,7 +303,26 @@ public class MainActivity extends Activity {
 	
 	public void markerClicked(Marker marker)
 	{
+		// toggle the default layout off
+		toggleLayouts(false);
 		
+		// get the marker title and snippet
+		String title = marker.getTitle();
+		String note = marker.getSnippet();
+		
+		EditText titleField = (EditText) findViewById(R.id.update_title);
+		EditText noteField = (EditText) findViewById(R.id.update_note);
+		
+		// verify that the fields are properly created
+		if (titleField != null && noteField != null)
+		{
+			// set the field text to the marker corresponding data
+			titleField.setText(title);
+			noteField.setText(note);
+		}
+		
+		// set reference to the selected marker
+		currentMarker = marker;
 	}
 	
 	// method for fetching the geolocational lat lon values from a string address
@@ -250,7 +343,7 @@ public class MainActivity extends Activity {
 		if (title == "" || title == null)
 		{
 			// give the marker a generic title if no title is supplied
-			title = "Marker " + mapData.size() + 1;
+			title = "Marker " + mapData.objectsLength() + 1;
 		}
 		
 		// add the marker to the map and capture the marker object
@@ -258,50 +351,51 @@ public class MainActivity extends Activity {
 		
 		if (mapData == null)
 		{
-			mapData = new HashMap<String, Marker>();
+			mapData = new UniArray();
 		}
 		
+		// wrap the lat and lon coords in a number object
+		Number lat_num = pin.getPosition().latitude;
+		Number lon_num = pin.getPosition().longitude;
+		
+		// creates an object array of the marker data
+		Object[] markerDetails = {pin.getTitle(), pin.getSnippet(), lat_num, lon_num};
+		
 		// store the marker object in application memory array
-		mapData.put(title, pin);
+		mapData.putObject(title, markerDetails);
 		
 		// move to the new marker
 		MapService.updatePosition(map, lat, lon, zoom);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void loadMarkers()
 	{
 		// construct the array
-		mapData = new HashMap<String, Marker>();
-		
+		mapData = new UniArray();
+		 
 		// load in the map marker data
-		mapData = (HashMap<String, Marker>) FileSystem.readObjectFile(this, "Defaults", false);
+		mapData = (UniArray) FileSystem.readObjectFile(this, "Defaults", true);
 		
 		if (mapData != null)
-		{
-			String[] keys = new String[mapData.size()];
-			int n = 0;
-			Set<String> set = mapData.keySet();
-			
-			while (set.iterator().hasNext())
-			{
-				keys[n] = (String) set.iterator().next();
-			}
-			
-			for (int i = 0; i < mapData.size(); i++)
+		{	
+			for (int i = 0; i < mapData.objectsLength(); i++)
 			{
 				// retrieve the marker object at current index
-				Marker pin = (Marker) mapData.get(keys[i]);
+				Object[] pin = (Object[]) mapData.getObject(i);
 				
-				// retrieve the latitude and longitude data from the marker
-				LatLng coords = pin.getPosition();
-				double lat = coords.latitude;
-				double lon = coords.longitude;
+				// retrieve the latitude and longitude data
+				Number lat_num = (Number) pin[2];
+				Number lon_num = (Number) pin[3];
+				
+				// retrieve the double values from the number wrappers
+				double lat = lat_num.doubleValue();
+				double lon = lon_num.doubleValue();
 				
 				// retrieve the title and snippet data from the marker
-				String pinTitle = pin.getTitle();
-				String pinNote = pin.getSnippet();
+				String pinTitle = (String) pin[0];
+				String pinNote = (String) pin[1];
 				
+				// add the loaded marker data
 				MapService.addMarker(map, pinTitle, pinNote, lat, lon);
 			}
 		}
@@ -310,7 +404,47 @@ public class MainActivity extends Activity {
 	public void saveMarkers()
 	{
 		// save the map marker data to system
-		FileSystem.writeObjectFile(this, mapData, "Defaults", false);
+		boolean result = FileSystem.writeObjectFile(this, mapData, "Defaults", true);
+		
+		if (result)
+		{
+			Log.i("SAVE RESULT", "File written to system successfully");
+		}
+	}
+	
+	public void toggleLayouts(boolean showDefaults)
+	{
+		int default_layout_visibility;
+		int update_layout_visibility;
+		
+		// check whether to show the default view or not
+		if (showDefaults)
+		{
+			default_layout_visibility = LinearLayout.VISIBLE;
+			update_layout_visibility = ScrollView.GONE;
+		}
+		else
+		{
+			default_layout_visibility = LinearLayout.GONE;
+			update_layout_visibility = ScrollView.VISIBLE;
+		}
+		
+		// manipulate the default layout
+		LinearLayout addMarkerLayout = (LinearLayout) findViewById(R.id.details_a);
+		addMarkerLayout.setVisibility(default_layout_visibility);
+		
+		// manipulate the update layout
+		ScrollView updateMarkerLayout = (ScrollView) findViewById(R.id.details_b);
+		updateMarkerLayout.setVisibility(update_layout_visibility);
+		
+		View v = getCurrentFocus();
+		
+		if (v != null)
+		{
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+		}
+		
 	}
 
 }

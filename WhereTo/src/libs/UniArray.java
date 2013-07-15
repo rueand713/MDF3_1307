@@ -10,10 +10,16 @@
  */
 package libs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UniArray {
+public class UniArray implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<String> OBJECT_KEYS = null;
 	private ArrayList<Object> OBJECT_PAIRS = null;
 	
@@ -394,5 +400,59 @@ public class UniArray {
 		}
 		
 		return value;
+	}
+	
+	// method for removing an object key/pair using an index value
+	public void removeObject(int index)
+	{
+		// verify that the array is not null and the index is in range
+		if (OBJECT_KEYS != null && index >= 0)
+		{
+			// remove the object at the current index
+			OBJECT_KEYS.remove(index);
+			OBJECT_PAIRS.remove(index);
+		}
+	}
+	
+	// method for removing an object key/pair using a string key value
+	public void removeObject(String key)
+	{
+		// verify that the array is not null and the index is in range
+		if (OBJECT_KEYS != null && hasObject(key))
+		{
+			// get the index for the key
+			int index = indexForObject(key);
+			
+			// remove the object at the current index
+			OBJECT_KEYS.remove(index);
+			OBJECT_PAIRS.remove(index);
+		}
+	}
+	
+	// method for removing a string key/pair using an index value
+	public void removeString(int index)
+	{
+		// verify that the array is not null and the index is in range
+		if (STRING_KEYS != null && index >= 0)
+		{
+			// remove the string at the current index
+			STRING_KEYS.remove(index);
+			STRING_PAIRS.remove(index);
+		}
+	}
+	
+	// method for removing a string key/pair using an string key value
+	public void removeString(String key)
+	{
+		// verify that the array is not null and the index is in range
+		if (STRING_KEYS != null && hasString(key))
+		{
+			// get the index for the key
+			int index = indexForString(key);
+			
+			// remove the object at the current index
+			STRING_KEYS.remove(index);
+			STRING_PAIRS.remove(index);
+		}
 	}
 }
