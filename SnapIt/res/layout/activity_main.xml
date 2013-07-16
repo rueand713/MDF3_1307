@@ -8,9 +8,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle"
+        >
+        
+        <Button android:id="@+id/new_playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_playlist"
+            style="?android:attr/buttonBarButtonStyle"
+            />
+        
+        <Button android:id="@+id/load_playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load_playlist"
+            style="?android:attr/buttonBarButtonStyle"
+            />
+        
+        <Button android:id="@+id/save_playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_playlist"
+            style="?android:attr/buttonBarButtonStyle"
+            />
+        
+    </LinearLayout>
+    
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        
+        <TableRow>
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/track_name"
+                />
+            
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/artist_name"
+                />
+        </TableRow>
+        
+        <TableRow android:id="@+id/list_table">
+            
+        </TableRow>
+        
+    </TableLayout>
 
 </RelativeLayout>

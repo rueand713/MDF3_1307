@@ -8,7 +8,10 @@ import android.net.Uri;
 
 public class MediaManager implements MediaPlayer.OnPreparedListener {
 
-	public final int AUDIO_STREAM = AudioManager.STREAM_MUSIC;
+	public static final int AUDIO_STREAM = AudioManager.STREAM_MUSIC;
+	public static final int AUDIO_LOSS = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+	public static final int AUDIO_LOST = AudioManager.AUDIOFOCUS_LOSS;
+	public static final int AUDIO_GAIN = AudioManager.AUDIOFOCUS_GAIN; 
 	
 	MediaPlayer mediaPlayer;
 	Context _context = null;
@@ -24,6 +27,12 @@ public class MediaManager implements MediaPlayer.OnPreparedListener {
 	public void startPlaying()
 	{
 		mediaPlayer.start();
+	}
+	
+	// method to stop playing the media player data source
+	public void stopPlaying()
+	{
+		mediaPlayer.stop();
 	}
 	
 	public void setupFilePlayer(String file)
@@ -64,7 +73,6 @@ public class MediaManager implements MediaPlayer.OnPreparedListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			
 		}
 	}
