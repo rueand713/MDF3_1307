@@ -5,91 +5,54 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 
-public class MediaManager implements MediaPlayer.OnPreparedListener {
+public class MediaManager {
 
 	public static final int AUDIO_STREAM = AudioManager.STREAM_MUSIC;
 	public static final int AUDIO_LOSS = AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
 	public static final int AUDIO_LOST = AudioManager.AUDIOFOCUS_LOSS;
 	public static final int AUDIO_GAIN = AudioManager.AUDIOFOCUS_GAIN; 
 	
-	MediaPlayer mediaPlayer;
-	Context _context = null;
-	
-	// constructor
-	MediaManager(Context context)
-	{
-		_context = context;
-		mediaPlayer = new MediaPlayer();
-	}
-	
-	// method to start playing the media player data source
-	public void startPlaying()
-	{
-		mediaPlayer.start();
-	}
-	
-	// method to stop playing the media player data source
-	public void stopPlaying()
-	{
-		mediaPlayer.stop();
-	}
-	
-	public void setupFilePlayer(String file)
+	public static MediaPlayer setupFilePlayer(String file, Context context)
 	{
 		// create the file path uri from the passed in string
 		Uri filepath = Uri.parse(file);
 		
 		// create the local media player
-		mediaPlayer = MediaPlayer.create(_context, filepath);
+		MediaPlayer mp = MediaPlayer.create(context, filepath);
+		
+		return mp;
 	}
 	
-	// method for creating the media player and setting the media player parameters
-	public void setupStreamingPlayer(String url)
+	// method for creating the media player and setting the media player data source
+	public static MediaPlayer setupStreamingPlayer(String url)
 	{
+		MediaPlayer mp = new MediaPlayer();
 		
 		// verify that the url is not null
 		if (url != null)
 		{
 			// set the media player audio stream type
-			mediaPlayer.setAudioStreamType(AUDIO_STREAM);
+			mp.setAudioStreamType(AUDIO_STREAM);
 			
 			try {
 				// set the media player parameters and set the preparations
-				mediaPlayer.setDataSource(url);
-				mediaPlayer.setOnPreparedListener(this);
-				mediaPlayer.prepareAsync();
+				mp.setDataSource(url);
 				
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("IllegalArguments", "Argument error in MediaManager class setting data source");
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("SecurityException", "Exception in MediaManager class setting data source");
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("IllegalStateException", "Exception in MediaManager class setting data source");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e("IOException", "Exception in MediaManager class setting data source");
 			}
 			
 		}
-	}
-
-	@Override
-	public void onPrepared(MediaPlayer mp)
-	{
-		// the media has been prepared
 		
-	}
-	
-	// method for releasing the media player
-	public void releasePlayer()
-	{
-		// release the media player object and nullify it
-		mediaPlayer.release();
-		mediaPlayer = null;
+		return mp;
 	}
 	
 }

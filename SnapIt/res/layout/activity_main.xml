@@ -1,14 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
-
-    <LinearLayout android:id="@+id/buttonLayout"
+    android:orientation="vertical"
+    >
+        
+    <LinearLayout android:id="@+id/playlist_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -20,6 +16,9 @@
             android:layout_height="wrap_content"
             android:text="@string/create_playlist"
             style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
             />
         
         <Button android:id="@+id/load_playlist"
@@ -27,18 +26,77 @@
             android:layout_height="wrap_content"
             android:text="@string/load_playlist"
             style="?android:attr/buttonBarButtonStyle"
-            />
-        
-        <Button android:id="@+id/save_playlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_playlist"
-            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
             />
         
     </LinearLayout>
     
-    <TableLayout
+    <EditText android:id="@+id/new_playlist_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/playlist_name"
+        android:visibility="gone"
+        ></EditText>
+    
+    <LinearLayout android:id="@+id/control_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20dip"
+        style="?android:attr/buttonBarStyle"
+        >
+        
+        <Button android:id="@+id/play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_media"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            />
+        
+        <Button android:id="@+id/pause_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause_media"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            />
+        
+        <Button android:id="@+id/stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop_media"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            />
+        
+        <Button android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_media"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@android:color/primary_text_light"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:visibility="gone"
+            />
+        
+        </LinearLayout>
+    
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/scroll_view"
+        >
+        
+        <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -47,18 +105,25 @@
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/track_name"
+                style="@style/titles_left"
                 />
             
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/artist_name"
+                style="@style/titles_right"
                 />
         </TableRow>
         
-        <TableRow android:id="@+id/list_table">
+        <TableLayout android:id="@+id/list_table"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+            >
             
-        </TableRow>
+        </TableLayout>
         
     </TableLayout>
+        
+    </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

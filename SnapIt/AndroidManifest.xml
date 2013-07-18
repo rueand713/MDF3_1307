@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
         <service android:name="DetailService"></service>
+        <activity android:name="AddTrackActivity"></activity>
+        <activity android:name="SelectPlaylistActivity"></activity>
     </application>
 
 </manifest>

@@ -6,17 +6,21 @@
     <string name="directions_local">Add audio files to create a playlist.</string>
     <string name="directions_stream">Add audio urls to create a playlist</string>
     <string name="directions_list">Load a premade text list of urls</string>
+    <string name="url_path">URL address</string>
     <string name="playlist_header">Playlist</string>
     <string name="track_name">Track Name</string>
     <string name="artist_name">Artist Name</string>
-    <string name="add_url_btn">Add A Url</string>
-    <string name="add_file_btn">Add A File</string>
+    <string name="add_url_btn">Add Url</string>
+    <string name="add_file_btn">Add File</string>
     <string name="load_playlist">Load Playlist</string>
     <string name="save_playlist">Save Playlist</string>
     <string name="create_playlist">Create Playlist</string>
+    <string name="playlist_name">Enter a name for this playlist</string>
     <string name="load_external">Load External List</string>
     <string name="stop_media">Stop</string>
     <string name="start_media">Play</string>
     <string name="pause_media">Pause</string>
+    <string name="add_media">Add Track</string>
+    <string name="done">Done</string>
 
 </resources>

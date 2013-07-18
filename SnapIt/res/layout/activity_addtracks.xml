@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <EditText android:id="@+id/track_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:hint="@string/track_name"
+        />
+    
+    <EditText android:id="@+id/artist_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:hint="@string/artist_name"
+        />
+    
+    <EditText android:id="@+id/track_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textUri"
+        android:hint="@string/url_path"
+        />
+    
+    <Button android:id="@+id/add_new_track"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_url_btn"
+        >
+    </Button>
+    
+    <Button android:id="@+id/done_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/done"
+        >
+    </Button>
+    
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/scroll_view"
+        >
+        
+        <TableLayout android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+            
+        </TableLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

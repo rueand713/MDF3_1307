@@ -12,7 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-public class IOManager {
+public class IOManager{
 	
 	static boolean connectionStatus = false;
 	static String connectionType = "No Connection";
