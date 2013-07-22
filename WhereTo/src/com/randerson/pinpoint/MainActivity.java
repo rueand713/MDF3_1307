@@ -323,7 +323,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.layout.main_activity_menu, menu);
+		getMenuInflater().inflate(R.menu.main_activity_menu, menu);
 		return true;
 	}
 	
@@ -504,14 +504,20 @@ public class MainActivity extends Activity {
 		else if (title.equals(getString(R.string.about_app)))
 		{
 			// display the about application screen
+			Intent about = UIFactory.makeIntent(AboutActivity.class);
+			
+			// add the caller string to identify which activity to go 'back' to
+			about.putExtra("caller", "MainActivity");
+			
+			startActivityForResult(about, 1);
 		}
 		else if (title.equals(getString(R.string.add_button)))
 		{
 			// create the intent for displaying the add marker activity
-			Intent dialog = UIFactory.makeIntent(InputActivity.class);
+			Intent makeMarkerView = UIFactory.makeIntent(InputActivity.class);
 			
 			// start the activity
-			startActivityForResult(dialog, 0);
+			startActivityForResult(makeMarkerView, 0);
 		}
 		else if (title.equals(getString(R.string.type)))
 		{

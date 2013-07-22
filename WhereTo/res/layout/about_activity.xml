@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView android:typeface="normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="@string/app_name"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        ></TextView>
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip"
+        >
+        
+        <TextView android:typeface="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/developed_by"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        ></TextView>
+        
+        <TextView android:typeface="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/developer"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        ></TextView>
+        
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip"
+        >
+        
+        <TextView android:typeface="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/about_app"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        ></TextView>
+        
+        <TextView android:typeface="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:lines="15"
+        android:text="@string/description"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        ></TextView>
+        
+    </LinearLayout>
+    
+    <TextView android:typeface="normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:text="@string/copy_year"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="50dip"
+        ></TextView>
+
+</LinearLayout>

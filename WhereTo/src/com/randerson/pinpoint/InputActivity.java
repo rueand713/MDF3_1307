@@ -156,14 +156,15 @@ public class InputActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.layout.input_activity_menu, menu);
+		getMenuInflater().inflate(R.menu.input_activity_menu, menu);
 		
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
+		
+		String title = (String) item.getTitle();
 		
 		if (item.getItemId() == android.R.id.home)
 		{
@@ -175,7 +176,7 @@ public class InputActivity extends Activity {
 			
 			startActivity(home);
 		}
-		else if (item.getTitle().equals(getString(R.string.clear)))
+		else if (title.equals(getString(R.string.clear)))
 		{
 			// creates a reference to the edit text objects in layout file
 			EditText countryField = (EditText) findViewById(R.id.countryField);
@@ -222,14 +223,20 @@ public class InputActivity extends Activity {
 			}
 			
 		}
-		else if (item.getTitle().equals(getString(R.id.quit_app)))
+		else if (title.equals(getString(R.string.quit)))
 		{
 			// end the app
 			finish();
 		}
-		else if (item.getTitle().equals(getString(R.id.app_info)))
+		else if (title.equals(getString(R.string.about_app)))
 		{
-			// display the about page
+			// display the about application screen
+			Intent about = UIFactory.makeIntent(AboutActivity.class);
+			
+			// add the caller string to identify which activity to go 'back' to
+			about.putExtra("caller", "InputActivity");
+			
+			startActivityForResult(about, 1);
 		}
 		
 		return super.onOptionsItemSelected(item);

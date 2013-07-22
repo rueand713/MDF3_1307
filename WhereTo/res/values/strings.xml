@@ -3,7 +3,7 @@
 
     <string name="app_name">Pinpoint</string>
     <string name="action_settings">Settings</string>
-    <string name="add_button">Add Map Note</string>
+    <string name="add_button">Add Note</string>
     <string name="blank"></string>
     <string name="instructions">Fill in the address details for the marker</string>
     <string name="city">City</string>
@@ -21,5 +21,12 @@
     <string name="quit">Quit</string>
     <string name="clear">Clear Text</string>
     <string name="type">Map Type</string>
+    <string name="developed_by">Developed by: </string>
+    <string name="developer">Rueben Anderson</string>
+    <string name="copy_year">&#169; Rueben Anderson, 2013</string>
+    <string name="description">Pinpoint is a unique note keeping app that allows you to pin your notes onto a map. 
+        Unlike other note taking apps that file your notes into a dull table, the map is your virtual noteboard! 
+        Add, update and remove your pinned notes with ease because Pinpoint utilizes Google\'s maps and location services.
+        Put some life back into your notes with Pinpoint!</string>
     
 </resources>
