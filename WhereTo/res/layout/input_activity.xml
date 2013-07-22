@@ -13,35 +13,35 @@
 	<EditText android:id="@+id/titleField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapWords"
 	    android:hint="@string/title"
 	    />
 	
 	<EditText android:id="@+id/addressField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapWords"
 	    android:hint="@string/address"
 	    />
 	
 	<EditText android:id="@+id/cityField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapWords"
 	    android:hint="@string/city"
 	    />
 	
 	<EditText android:id="@+id/stateField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapWords"
 	    android:hint="@string/state"
 	    />
 	
 	<EditText android:id="@+id/countryField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapWords"
 	    android:hint="@string/country"
 	    />
 	
@@ -54,7 +54,7 @@
 	<EditText android:id="@+id/noteField"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
+	    android:inputType="textCapSentences"
 	    android:lines="5"
 	    android:hint="@string/note_info"
 	    />

@@ -33,6 +33,7 @@ import android.widget.ScrollView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.randerson.classes.FileSystem;
 import com.randerson.classes.InterfaceManager;
@@ -57,6 +58,8 @@ public class MainActivity extends Activity {
 	GoogleMap map;
 	Marker currentMarker;
 	EditText currentField;
+	int[] mapType = {MapService.NORMAL, MapService.TERRAIN, MapService.HYBRID, MapService.SATELLITE};
+	int currentMapType = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,10 @@ public class MainActivity extends Activity {
 		// verify that the map is created properly
 		if (map != null)
 		{
+			// enable the use of user location and set the map type
+			map.setMyLocationEnabled(true);
+			map.setMapType(mapType[currentMapType]);
+			
 			// set the marker click listener for the google map
 			map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 				
@@ -106,6 +113,16 @@ public class MainActivity extends Activity {
 					markerClicked(arg0);
 					
 					return false;
+				}
+			});
+			
+			map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+				
+				@Override
+				public void onMapClick(LatLng point) {
+					
+					// remove the update layout view
+					toggleLayouts(true);
 				}
 			});
 		
@@ -387,6 +404,9 @@ public class MainActivity extends Activity {
 		
 		if (mapData != null)
 		{	
+			double lat = 0;
+			double lon = 0;
+			
 			for (int i = 0; i < mapData.objectsLength(); i++)
 			{
 				// retrieve the marker object at current index
@@ -397,8 +417,8 @@ public class MainActivity extends Activity {
 				Number lon_num = (Number) pin[3];
 				
 				// retrieve the double values from the number wrappers
-				double lat = lat_num.doubleValue();
-				double lon = lon_num.doubleValue();
+				lat = lat_num.doubleValue();
+				lon = lon_num.doubleValue();
 				
 				// retrieve the title and snippet data from the marker
 				String pinTitle = (String) pin[0];
@@ -407,6 +427,9 @@ public class MainActivity extends Activity {
 				// add the loaded marker data
 				MapService.addMarker(map, pinTitle, pinNote, lat, lon);
 			}
+			
+			// move to the last loaded marker
+			MapService.updatePosition(map, lat, lon, 10);
 		}
 	}
 	
@@ -429,6 +452,13 @@ public class MainActivity extends Activity {
 		if (showDefaults)
 		{
 			update_layout_visibility = View.GONE;
+			
+			// verify that a marker has been selected
+			if (currentMarker != null)
+			{
+				// dismiss the marker info
+				currentMarker.hideInfoWindow();
+			}
 		}
 		else
 		{
@@ -439,11 +469,15 @@ public class MainActivity extends Activity {
 		ScrollView updateMarkerLayout = (ScrollView) findViewById(R.id.details_b);
 		updateMarkerLayout.setVisibility(update_layout_visibility);
 		
+		// create reference to the text fields
 		EditText titleField = (EditText) findViewById(R.id.update_title);
 		EditText noteField = (EditText) findViewById(R.id.update_note);
 		
+		// create the input manager object
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		
+		// determine which if any of the edit texts still have focus
+		// if so then the dismiss the keyboard
 		if (titleField.hasFocus())
 		{
 			imm.hideSoftInputFromWindow(titleField.getWindowToken(), 0);
@@ -478,6 +512,21 @@ public class MainActivity extends Activity {
 			
 			// start the activity
 			startActivityForResult(dialog, 0);
+		}
+		else if (title.equals(getString(R.string.type)))
+		{
+			// increment the map type tracker
+			currentMapType++;
+			
+			// check the map type tracker is in range
+			if (currentMapType > (mapType.length - 1))
+			{
+				// if not reset the tracker value
+				currentMapType = 0;
+			}
+			
+			// set the map type
+			map.setMapType(mapType[currentMapType]);
 		}
 		
 		return super.onOptionsItemSelected(item);

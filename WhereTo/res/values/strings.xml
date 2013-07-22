@@ -19,5 +19,7 @@
     <string name="cancel_button">Dismiss</string>
     <string name="about_app">About</string>
     <string name="quit">Quit</string>
+    <string name="clear">Clear Text</string>
+    <string name="type">Map Type</string>
     
 </resources>
