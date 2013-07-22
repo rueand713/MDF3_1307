@@ -16,6 +16,8 @@
     <string name="title">Marker title</string>
     <string name="update_button">Update Note</string>
     <string name="remove_button">Remove Note</string>
-    <string name="cancel_button">Cancel</string>
+    <string name="cancel_button">Dismiss</string>
+    <string name="about_app">About</string>
+    <string name="quit">Quit</string>
     
 </resources>

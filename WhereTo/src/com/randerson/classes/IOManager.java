@@ -1,11 +1,11 @@
 /*
- * project 		WhereTo
+ * project 		Pinpoint
  * 
  * package 		com.randerson.classes
  * 
  * @author 		Rueben Anderson
  * 
- * date			Jul 11, 2013
+ * date			Jul 21, 2013
  * 
  */
 

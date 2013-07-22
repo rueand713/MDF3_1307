@@ -1,13 +1,14 @@
 /*
- * project 		WhereTo
+ * project 		Pinpoint
  * 
- * package 		com.randerson.whereto
+ * package 		com.randerson.pinpoint
  * 
  * @author 		Rueben Anderson
  * 
- * date			Jul 11, 2013
+ * date			Jul 21, 2013
  * 
  */
+
 package com.randerson.pinpoint;
 
 import libs.UniArray;
@@ -22,13 +23,12 @@ import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -62,12 +62,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		setContentView(R.layout.activity_main);
-		
+	
 		// create the UI singleton
 		UIFactory = new InterfaceManager(this);
 		
@@ -156,21 +156,6 @@ public class MainActivity extends Activity {
 			// ***************************************************
 			
 			// create the button from the layout file
-			Button addBtn = (Button) findViewById(R.id.addDataBtn);
-			
-			// set the click listener for the button
-			addBtn.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					
-					Intent dialog = UIFactory.makeIntent(InputActivity.class);
-					
-					startActivityForResult(dialog, 0);
-				}
-			});
-			
-			// create the button from the layout file
 			Button updateBtn = (Button) findViewById(R.id.updateBtn);
 			
 			// set the click listener for the button
@@ -183,13 +168,36 @@ public class MainActivity extends Activity {
 					EditText titleField = (EditText) findViewById(R.id.update_title);
 					EditText noteField = (EditText) findViewById(R.id.update_note);
 					
-					// string objects for holding the text data of the edit texts
-					String title = titleField.getText().toString();
-					String note = noteField.getText().toString();
-					
-					// update the selected marker's title and note
-					currentMarker.setTitle(title);
-					currentMarker.setSnippet(note);
+					if (titleField != null && noteField != null)
+					{
+						// string objects for holding the text data of the edit texts
+						String header = titleField.getText().toString();
+						String note = noteField.getText().toString();
+						
+						// update the selected marker's title and note
+						currentMarker.setTitle(header);
+						currentMarker.setSnippet(note);
+						
+						if (mapData != null)
+						{
+							// get the marker memory object
+							Object[] memStore = (Object[]) mapData.getObject(title);
+							
+							// remove the old data as the markers are saved using their titles
+							// this will prevent null issues
+							mapData.removeObject(title);
+							
+							if (memStore != null)
+							{
+								// update the marker memory object title and note
+								memStore[0] = header;
+								memStore[1] = note;
+								
+								// put the updated marker memory data back into the app memory object
+								mapData.putObject(header, memStore);
+							}
+						}
+					}
 					
 					// toggle the default layout on
 					toggleLayouts(true);
@@ -298,7 +306,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.layout.main_activity_menu, menu);
 		return true;
 	}
 	
@@ -308,7 +316,7 @@ public class MainActivity extends Activity {
 		toggleLayouts(false);
 		
 		// get the marker title and snippet
-		String title = marker.getTitle();
+		title = marker.getTitle();
 		String note = marker.getSnippet();
 		
 		EditText titleField = (EditText) findViewById(R.id.update_title);
@@ -415,37 +423,65 @@ public class MainActivity extends Activity {
 	
 	public void toggleLayouts(boolean showDefaults)
 	{
-		int default_layout_visibility;
 		int update_layout_visibility;
 		
 		// check whether to show the default view or not
 		if (showDefaults)
 		{
-			default_layout_visibility = View.VISIBLE;
 			update_layout_visibility = View.GONE;
 		}
 		else
 		{
-			default_layout_visibility = View.GONE;
 			update_layout_visibility = View.VISIBLE;
 		}
-		
-		// manipulate the default layout
-		LinearLayout addMarkerLayout = (LinearLayout) findViewById(R.id.details_a);
-		addMarkerLayout.setVisibility(default_layout_visibility);
 		
 		// manipulate the update layout
 		ScrollView updateMarkerLayout = (ScrollView) findViewById(R.id.details_b);
 		updateMarkerLayout.setVisibility(update_layout_visibility);
 		
-		View v = getCurrentFocus();
+		EditText titleField = (EditText) findViewById(R.id.update_title);
+		EditText noteField = (EditText) findViewById(R.id.update_note);
 		
-		if (v != null)
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		
+		if (titleField.hasFocus())
 		{
-			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+			imm.hideSoftInputFromWindow(titleField.getWindowToken(), 0);
 		}
-		
+		else
+		{
+			imm.hideSoftInputFromWindow(noteField.getWindowToken(), 0);
+		}
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		
+		// grab the text data from the menu item that has been selected
+		String title = (String) item.getTitle();
+		
+		// compare the menu item text to the button strings for appropriate action
+		if (title.equals(getString(R.string.quit)))
+		{
+			// quit the application
+			finish();
+		}
+		else if (title.equals(getString(R.string.about_app)))
+		{
+			// display the about application screen
+		}
+		else if (title.equals(getString(R.string.add_button)))
+		{
+			// create the intent for displaying the add marker activity
+			Intent dialog = UIFactory.makeIntent(InputActivity.class);
+			
+			// start the activity
+			startActivityForResult(dialog, 0);
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
+	
+	
 }
