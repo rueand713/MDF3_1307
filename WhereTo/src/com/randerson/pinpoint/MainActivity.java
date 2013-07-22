@@ -11,24 +11,15 @@
 package com.randerson.pinpoint;
 
 import libs.UniArray;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.Marker;
-import com.randerson.classes.FileSystem;
-import com.randerson.classes.InterfaceManager;
-import com.randerson.classes.JSONhandler;
-import com.randerson.mapclass.MapService;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Messenger;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -39,6 +30,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.Marker;
+import com.randerson.classes.FileSystem;
+import com.randerson.classes.InterfaceManager;
+import com.randerson.classes.JSONhandler;
+import com.randerson.mapclass.MapService;
 
 @SuppressLint("HandlerLeak")
 public class MainActivity extends Activity {
@@ -65,7 +64,7 @@ public class MainActivity extends Activity {
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); 
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		setContentView(R.layout.activity_main);
 		
@@ -100,6 +99,7 @@ public class MainActivity extends Activity {
 			// set the marker click listener for the google map
 			map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 				
+				@Override
 				public boolean onMarkerClick(Marker arg0) {
 					
 					// method for handling the marker clicks
@@ -239,6 +239,7 @@ public class MainActivity extends Activity {
 				}
 			});
 		}
+		
 	}
 
 	@Override
@@ -420,13 +421,13 @@ public class MainActivity extends Activity {
 		// check whether to show the default view or not
 		if (showDefaults)
 		{
-			default_layout_visibility = LinearLayout.VISIBLE;
-			update_layout_visibility = ScrollView.GONE;
+			default_layout_visibility = View.VISIBLE;
+			update_layout_visibility = View.GONE;
 		}
 		else
 		{
-			default_layout_visibility = LinearLayout.GONE;
-			update_layout_visibility = ScrollView.VISIBLE;
+			default_layout_visibility = View.GONE;
+			update_layout_visibility = View.VISIBLE;
 		}
 		
 		// manipulate the default layout

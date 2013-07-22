@@ -168,7 +168,7 @@ public class FileSystem {
 					try {
 						
 						// set the object to object read from stream
-						objectContent = (Object) objectInput.readObject();
+						objectContent = objectInput.readObject();
 					} catch (ClassNotFoundException e) {
 						Log.e("READ ERROR", "Invalid Java Object file");
 					}

@@ -83,9 +83,12 @@ int string action_settings 0x7f060016
 int string add_button 0x7f060017
 int string address 0x7f06001c
 int string app_name 0x7f060015
-int string auth_client_availability_notification_title 0x7f06000f
-int string auth_client_play_services_err_notification_msg 0x7f060010
-int string auth_client_requested_by_msg 0x7f060011
+int string auth_client_needs_enabling_title 0x7f060010
+int string auth_client_needs_installation_title 0x7f060011
+int string auth_client_needs_update_title 0x7f060012
+int string auth_client_play_services_err_notification_msg 0x7f060013
+int string auth_client_requested_by_msg 0x7f060014
+int string auth_client_using_bad_version_title 0x7f06000f
 int string blank 0x7f060018
 int string cancel_button 0x7f060024
 int string city 0x7f06001a
@@ -107,9 +110,6 @@ int string common_signin_button_text_long 0x7f06000e
 int string country 0x7f06001d
 int string done_button 0x7f06001e
 int string instructions 0x7f060019
-int string location_client_ulr_inactive_age_under_13 0x7f060012
-int string location_client_ulr_inactive_age_unknown 0x7f060013
-int string location_client_ulr_inactive_unknown_restriction 0x7f060014
 int string note_info 0x7f060020
 int string note_title 0x7f06001f
 int string remove_button 0x7f060023

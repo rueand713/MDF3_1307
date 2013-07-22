@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,7 +30,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 
 public class InterfaceManager {
 	
@@ -93,7 +93,7 @@ public class InterfaceManager {
 				if (wrapContent)
 				{
 					// define the layout param object to wrap
-					layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+					layoutParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 					
 					// set the layout param for the linear layout
 					thisLayout.setLayoutParams(layoutParams);
@@ -101,7 +101,7 @@ public class InterfaceManager {
 				else
 				{
 					// define the layout param object to match its parent
-					layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+					layoutParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT);
 					
 					// set the layout param for the linear layout
 					thisLayout.setLayoutParams(layoutParams);
@@ -210,7 +210,7 @@ public class InterfaceManager {
 				Spinner spinner = new Spinner(_context);
 				
 				// create a layout params object
-				LayoutParams params = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f);
+				LayoutParams params = new LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
 				
 				// set the layout params for the spinner
 				spinner.setLayoutParams(params);

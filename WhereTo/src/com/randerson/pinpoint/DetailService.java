@@ -13,7 +13,6 @@ package com.randerson.pinpoint;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.randerson.classes.IOManager;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
@@ -23,6 +22,8 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.randerson.classes.IOManager;
 
 public class DetailService extends IntentService {
 	
