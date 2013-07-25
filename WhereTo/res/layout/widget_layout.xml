@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/WidgetStyle">
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        
+        <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        
+        <TextView android:id="@+id/num_notes_title"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/widget_dir"
+        	android:textColor="@android:color/white"
+        	android:textSize="16sp"
+        	android:paddingRight="20dip"
+        />
+    
+    	<TextView android:id="@+id/num_notes_value"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/blank"
+        	android:textColor="@android:color/white"
+        	android:textSize="20sp"
+        	android:textStyle="bold"
+        	android:layout_margin="0.25dip"
+        	android:textAlignment="center"
+        />
+        
+    </LinearLayout>
+    
+    <Button android:id="@+id/launch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:paddingLeft="20dip"
+        />
+        
+    </LinearLayout>
+    
+    <TextView android:id="@+id/update_time"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/blank"
+        	android:textColor="@android:color/white"
+        	android:layout_marginBottom="1dip"
+        	android:textSize="12sp"
+        />
+
+</LinearLayout>

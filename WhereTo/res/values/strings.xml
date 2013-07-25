@@ -21,6 +21,7 @@
     <string name="quit">Quit</string>
     <string name="clear">Clear Text</string>
     <string name="type">Map Type</string>
+    <string name="widget_dir">Notes Pinned</string>
     <string name="developed_by">Developed by: </string>
     <string name="developer">Rueben Anderson</string>
     <string name="copy_year">&#169; Rueben Anderson, 2013</string>

@@ -1,3 +1,13 @@
+/*
+ * project 		Pinpoint
+ * 
+ * package 		com.randerson.pinpoint
+ * 
+ * @author 		Rueben Anderson
+ * 
+ * date			Jul 25, 2013
+ * 
+ */
 package com.randerson.pinpoint;
 
 import com.randerson.classes.InterfaceManager;
