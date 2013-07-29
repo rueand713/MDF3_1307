@@ -1,13 +1,12 @@
 package com.randerson.docuweb;
 
-import com.randerson.JS.JSInterface;
+import java.io.File;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class MainActivity extends Activity {
@@ -19,15 +18,34 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		WebView webview = (WebView) findViewById(R.id.webView);
-		WebSettings settings = webview.getSettings();
-		settings.setJavaScriptEnabled(true);
+		File webApp = new File("/DocuWeb/src/com/randerson/docuweb/web_app.html");
 		
+		if (webApp.exists() == true)
+		{
+			Log.i("Web Data", "exists");
+		}
+		else
+		{
+			Log.i("Web Data", "not existed");
+		}
+		
+		/*
+		// create the webview from the layout
+		WebView webview = (WebView) findViewById(R.id.webView);
+		
+		// verify that the webview is valid
 		if (webview != null)
 		{
+			// set the webview to allow the use of javascript
+			webview.getSettings().setJavaScriptEnabled(true);
+			
+			// setup the webview js interface object and namespace hook
 			webview.addJavascriptInterface(new JSInterface(this), "Native");
+			
+			// load the hybrid app webpage url into the webview
 			webview.loadUrl(URL);
 		}
+		*/
 	}
 
 	@Override
