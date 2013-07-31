@@ -114,4 +114,12 @@ public class NoteActivity extends Activity implements ActivityInterface {
 		}
 	}
 
+	@Override
+	public void endActivity() {
+		
+		// call the finish method
+		finish();
+		
+	}
+
 }

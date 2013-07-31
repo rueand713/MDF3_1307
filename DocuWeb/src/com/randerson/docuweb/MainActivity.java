@@ -1,15 +1,17 @@
 package com.randerson.docuweb;
 
+import libs.IOManager;
 import libs.InterfaceManager;
 import android.app.Activity;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,6 +19,13 @@ public class MainActivity extends Activity {
 		
 		// create the interface manager singleton
 		final InterfaceManager UIFactory = new InterfaceManager(this);
+		
+		// create the network receiver object
+		IOManager iom = new IOManager();
+		final IOManager.Receiver networkReceiver = iom.new Receiver(this);
+		
+		// register the network receiver
+		this.registerReceiver(networkReceiver, IOManager.getFilter());
 		
 		// create the button from the layout
 		Button newTagButton = (Button) findViewById(R.id.new_note);
@@ -30,14 +39,31 @@ public class MainActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					
-					// create the intent to start the note activity
-					Intent noteActivity = UIFactory.makeIntent(NoteActivity.class);
+					// network type string
+					String netType = "No Connection";
 					
-					// verify the intent is valid
-					if (noteActivity != null)
+					// check if the network is available
+					if (networkReceiver.getStatus())
 					{
-						// start the intent
-						startActivity(noteActivity);
+						// set the network string to the network type available
+						netType = networkReceiver.getType() + " Connection Detected";
+					}
+					
+					// display the network status toast
+					(UIFactory.createToast(netType, false)).show();
+					
+					// check if the network is available
+					if (networkReceiver.getStatus())
+					{
+						// create the intent to start the note activity
+						Intent noteActivity = UIFactory.makeIntent(NoteActivity.class);
+						
+						// verify the intent is valid
+						if (noteActivity != null)
+						{
+							// start the intent
+							startActivity(noteActivity);
+						}
 					}
 				}
 			});
@@ -55,7 +81,15 @@ public class MainActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					
+					// create the intent to start the list activity
+					Intent listActivity = UIFactory.makeIntent(ListActivity.class);
 					
+					// verify the intent is valid
+					if (listActivity != null)
+					{
+						// start the intent
+						startActivity(listActivity);
+					}
 				}
 			});
 		}

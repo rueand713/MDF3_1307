@@ -1,5 +1,11 @@
 package com.randerson.JS;
 
+import java.util.HashMap;
+
+import libs.FileSystem;
+import libs.InterfaceManager;
+import libs.UniArray;
+
 import com.randerson.interfaces.ActivityInterface;
 
 import android.content.Context;
@@ -30,8 +36,38 @@ public class JSInterface {
 	@android.webkit.JavascriptInterface
 	public void clicked(String[] value)
 	{
-		String v = new String(value[0]);
-		Log.i("Accept Clicked", v);
+		// save the note data
+		UniArray saveData = (UniArray) FileSystem.readObjectFile(CONTEXT, "save_data", true);
+		
+		// verify if the saveData object is valid
+		if (saveData == null)
+		{
+			// create the new save data object
+			saveData = new UniArray();
+		}
+		
+		// create the hashmap item
+		HashMap<String, Object> item = new HashMap<String, Object>();
+		
+		// store the passed in strings into the hashmap
+		item.put("title", value[0]);
+		item.put("people", value[1]);
+		item.put("time", value[2]);
+		item.put("location", value[3]);
+		item.put("description", value[4]);
+		
+		// store the bitmap data into the hashmap
+		item.put("image", PATH);
+		
+		// store the new saved data
+		saveData.putObject(value[0], item);
+		
+		// show toast informing the user that the data was saved
+		InterfaceManager UIFactory = new InterfaceManager(CONTEXT);
+		(UIFactory.createToast("Data Saved!", false)).show();
+		
+		// end the activity
+		parent.endActivity();
 	}
 	
 	// method for launching the camera from the web app
