@@ -1,3 +1,7 @@
+var javaClass = {
+   setImage: null
+   }; 
+
 window.addEventListener("DOMContentLoaded", function(){
     
     // method for finding and returning a DOM element by its id
@@ -42,12 +46,34 @@ window.addEventListener("DOMContentLoaded", function(){
     }
  }
  
- var acceptButton = getId("accept_button");
+ function setImage()
+ {
+    var img = getId("captured_image");
+    
+    var path = "file:" + Native.getImagePath();
+    
+    img.setAttribute("src", path);
+ }
  
- acceptButton.addEventListener("click", function(){
+ var submitButton = getId("submit_button");
+ var photoButton = getId("capture_image");
+ 
+ // set the click listener for the submit button
+ submitButton.addEventListener("click", function(){
     
     // grab the text field values and pass them into the native application
     getTextValues();
- })
+ });
+ 
+ // set the click listener for the photo capture button
+ photoButton.addEventListener("click", function(){
     
-})
+    // launch the camera on the device
+    Native.getCameraImage();
+    
+    });
+    
+ // let the set image method be visible to the native java app from the javaClass object
+    javaClass.setImage = setImage;
+    
+});

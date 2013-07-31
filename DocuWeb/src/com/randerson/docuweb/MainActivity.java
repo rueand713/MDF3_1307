@@ -93,13 +93,18 @@ public class MainActivity extends Activity implements ActivityInterface {
 					// create the bitmap image and save it to the application file system
 					Bitmap image = (Bitmap) bundle.get("data");
 					
-					Object[] o = FileSystem.writeBitmapFile(this, image, "default_image.jpg", false, 90, Bitmap.CompressFormat.JPEG);
-					String path = (String) o[1];
+					// capture the system write data returned
+					Object[] result = FileSystem.writeBitmapFile(this, image, "default_image.jpg", false, false, 90, Bitmap.CompressFormat.JPEG);
 					
+					// grab the file path from the write data
+					String path = (String) result[1];
+					
+					// pass the image path to the js interface
 					interfaceJS.PATH = path;
 					
 					Log.i("Path", path);
 					
+					// call method to retrieve the image for the webview
 					interfaceJS.callJSRetrieveImage(webApp);
 				}
 			}
