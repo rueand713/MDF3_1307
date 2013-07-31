@@ -14,7 +14,12 @@ window.addEventListener("DOMContentLoaded", function(){
  function getTextValues()
  {
     var valid = true;
-	
+   
+   // reset the required field borders to normal
+    getId("document_name").style.border = "solid black thin";
+    getId("document_location").style.border = "solid black thin";
+    getId("document_description").style.border = "solid black thin";
+   
     // reference the dom elements by their ids and get their associated values
     var note_title = getId("document_name").value;
     var note_people = getId("document_tags").value;
@@ -22,20 +27,32 @@ window.addEventListener("DOMContentLoaded", function(){
     var note_location = getId("document_location").value;
     var note_description= getId("document_description").value;
     
+    // create a data array of the string values to pass back to the native code
     var data = [note_title, note_people, note_time, note_location, note_description];
     
     // validate the required strings
     if (note_title == null || note_title.replace(" ", "") == "")
     {
     	valid = false;
+        
+        // set the required field border to red
+        getId("document_name").style.border = "solid red thin";
     }
-    else if (note_location == null || note_location.replace(" ", "") == "")
+    
+    if (note_location == null || note_location.replace(" ", "") == "")
     {
     	valid = false;
+        
+        // set the required field border to red
+        getId("document_location").style.border = "solid red thin";
     }
-    else if (note_description == null || note_description.replace(" ", "") == "")
+    
+    if (note_description == null || note_description.replace(" ", "") == "")
     {
     	valid = false;
+        
+        // set the required field border to red
+        getId("document_description").style.border = "solid red thin";
     }
     
     // verify that the data is valid
@@ -46,17 +63,20 @@ window.addEventListener("DOMContentLoaded", function(){
     }
  }
  
- function setImage()
+ // method for setting image tag (removed)
+ /*function setImage()
  {
     var img = getId("captured_image");
     
     var path = "file:" + Native.getImagePath();
     
     img.setAttribute("src", path);
- }
+ }*/
  
+ // create references to the button objects
  var submitButton = getId("submit_button");
  var photoButton = getId("capture_image");
+ var clearButton = getId("clear_button");
  
  // set the click listener for the submit button
  submitButton.addEventListener("click", function(){
@@ -72,6 +92,18 @@ window.addEventListener("DOMContentLoaded", function(){
     Native.getCameraImage();
     
     });
+ 
+ // set the click listener for the clear button
+ clearButton.addEventListener("click", function(){
+   
+   // clear all of the textfield text
+    getId("document_name").value = "";
+    getId("document_tags").value = "";
+    getId("document_time").value = "";
+    getId("document_location").value = "";
+    getId("document_description").value = "";
+   
+   });
     
  // let the set image method be visible to the native java app from the javaClass object
     javaClass.setImage = setImage;

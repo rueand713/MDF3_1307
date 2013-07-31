@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_title);
 		
+		// create the interface manager singleton
 		final InterfaceManager UIFactory = new InterfaceManager(this);
 		
 		// create the button from the layout

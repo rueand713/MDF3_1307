@@ -1,0 +1,65 @@
+body {
+    background-color: #3A3A3A;
+}
+
+.doc_parts {
+	padding: 1.5em;
+	margin-bottom: 1.75em;
+	border: thin;
+	border-color: gray;
+	border-style: solid;
+	display: block;
+}
+
+h3 {
+	font-style: italic;
+	color: gray;
+	margin-bottom: 0.5em;
+	display: block;
+}
+
+.text_field {
+	min-width: 85%;
+	left: 20%;
+	display:block;
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+}
+
+.key {
+    display: block;
+    margin-bottom: 1.5em;
+    font-size: small;
+    font-style: italic;
+    color: white;
+}
+
+div {
+    background-color: white;
+}
+
+p {
+	display: block;
+}
+
+.hint {
+	font-size: small;
+	color: gray;
+	font-style: italic;
+}
+
+textarea {
+    min-height: 5em;
+}
+
+button {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.25em;
+    min-width: 5em;
+    border-style: solid;
+    border-bottom-width:thin;
+    border-color: white;
+    background-color: #D9D9D9;
+}

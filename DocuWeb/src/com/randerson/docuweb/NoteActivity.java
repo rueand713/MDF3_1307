@@ -79,12 +79,16 @@ public class NoteActivity extends Activity implements ActivityInterface {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
+		// verify the requestcode
 		if (requestCode == 0)
 		{
+			// verify that the data object is valid
 			if (data != null)
 			{
+				// get the intent extras data
 				Bundle bundle = data.getExtras();
 				
+				// verify that the bundle is valid and has the data key
 				if (bundle != null && bundle.containsKey("data"))
 				{
 					// create the bitmap image and save it to the application file system
@@ -101,8 +105,10 @@ public class NoteActivity extends Activity implements ActivityInterface {
 					
 					Log.i("Path", path);
 					
+					/* removed - html img doesn't receive permission to load the file
 					// call method to retrieve the image for the webview
 					interfaceJS.callJSRetrieveImage(webApp);
+					*/
 				}
 			}
 		}

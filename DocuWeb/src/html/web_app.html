@@ -7,34 +7,36 @@
 	</head>
 	<body>
 		<section>
+			<img src="" id="captured_image" alt="user camera image"/>
 			<div class="doc_parts">
 				<h3>Name This Event</h3>
 				<p class="hint">Input a descriptive name about this event</p>
-				<input id="document_name" value="" placeholder="Rare find, Scary Dog, etc"/>
+				<input class="text_field" id="document_name" value="" placeholder="Rare find, Scary Dog, etc"/>
 			</div>
 			<div class="doc_parts">
 				<h3>Where Was This?</h3>
 				<p class="hint">Describe a personal place, location, or locale</p>
-				<input id="document_location" value="" placeholder="Pizza hut, Mom's House, Hwy 249, etc"/>
+				<input class="text_field" id="document_location" value="" placeholder="Pizza hut, Mom's House, Hwy 249, etc"/>
 			</div>
 			<div class="doc_parts">
 				<h3>Who Was With You?</h3>
 				<p class="hint">Detail everyone else involved</p>
-				<input id="document_tags" value="" placeholder="Ben, Megan, Wild Dog, etc"/>
+				<input class="text_field" id="document_tags" value="" placeholder="Ben, Megan, Wild Dog, etc"/>
 			</div>
 			<div class="doc_parts">
 				<h3>What Time Was This?</h3>
 				<p class="hint">Give a general time or actual time</p>
-				<input id="document_time" value="" placeholder="Sunrise, Lunch Break, 5:00pm, etc"/>
+				<input class="text_field" id="document_time" value="" placeholder="Sunrise, Lunch Break, 5:00pm, etc"/>
 			</div>
 			<div class="doc_parts">
 				<h3>What Happened?</h3>
 				<p class="hint">Write briefly about the events that led up to this note</p>
-				<textarea id="document_description" rows="5" cols="1" placeholder="On the road to work...and this scary dog jumped out!"></textarea>
+				<textarea class="text_field" id="document_description" placeholder="Going to work this scary dog jumped out!"></textarea>
 			</div>
 		</section>
 		<button id="submit_button">Submit</button>
 		<button id="clear_button">Clear</button>
+		<button id="capture_image">Add Photo</button>
 		<script src="main.js" type="text/javascript"></script>
 	</body>
 </html>

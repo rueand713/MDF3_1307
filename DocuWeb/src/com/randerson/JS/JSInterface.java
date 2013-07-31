@@ -18,8 +18,10 @@ public class JSInterface {
 	{
 		CONTEXT = context;
 		
+		// verify that the context activity does implement the activityInterface
 		if (context instanceof ActivityInterface)
 		{
+			// cast the context to the activity interface
 			parent = (ActivityInterface) context;
 		}
 	}
@@ -36,14 +38,16 @@ public class JSInterface {
 	@android.webkit.JavascriptInterface
 	public void getCameraImage()
 	{
-		
+		// verify that the parent object is valid
 		if (parent != null)
 		{
+			// start the camera intent from the method in the parent activity
 			parent.launchCamera();
 		}
 		
 	}
 	
+	// method for returning the camera image's path to the javascript
 	@android.webkit.JavascriptInterface
 	public String getImagePath()
 	{
@@ -51,10 +55,13 @@ public class JSInterface {
 		return PATH;
 	}
 	
+	// method for calling the javascript image setting method
 	public void callJSRetrieveImage(WebView webview)
 	{
+		// verify that the webview is valid
 		if (webview != null)
 		{
+			// call the javascript setimage method
 			webview.loadUrl("javascript:javaClass.setImage()");
 		}
 	}
