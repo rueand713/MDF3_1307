@@ -6,6 +6,7 @@
     <string name="make_note">Make A New Tag</string>
     <string name="view_notes">View My Tags</string>
     <string name="instructions">Select a menu option to get started.</string>
-    <string name="copy">(C) Rueben Anderson 2013</string>
+    <string name="copy">&#169; Rueben Anderson 2013</string>
+    <string name="blank"></string>
 
 </resources>
