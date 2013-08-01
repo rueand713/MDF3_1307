@@ -1,6 +1,17 @@
+/*
+ * project 		DocuWeb
+ * 
+ * package 		com.randerson.docuweb
+ * 
+ * @author 		Rueben Anderson
+ * 
+ * date			Aug 1, 2013
+ * 
+ */
 package com.randerson.docuweb;
 
 import libs.FileSystem;
+import libs.InterfaceManager;
 
 import com.randerson.JS.JSInterface;
 import com.randerson.interfaces.ActivityInterface;
@@ -9,9 +20,10 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.Menu;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,15 +33,23 @@ public class NoteActivity extends Activity implements ActivityInterface {
 
 	final String URL = "https://dl.dropboxusercontent.com/u/68223018/apps/docuweb/docuweb.html";
 	
+	InterfaceManager UIFactory = null;
 	JSInterface interfaceJS;
 	WebView webApp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
 		setContentView(R.layout.activity_main);
 	
 		interfaceJS = new JSInterface(this);
+		
+		// instantiate the UIFactory singleton
+		UIFactory = new InterfaceManager(this);
 		
 		// create the webview from the layout
 		webApp = (WebView) findViewById(R.id.webView);
@@ -95,15 +115,23 @@ public class NoteActivity extends Activity implements ActivityInterface {
 					Bitmap image = (Bitmap) bundle.get("data");
 					
 					// save the image and capture the system write data returned
-					Object[] result = FileSystem.writeBitmapFile(this, image, "default_image.jpg", false, false, 90, Bitmap.CompressFormat.JPEG);
+					String[] result = FileSystem.writeBitmapFile(this, image, "default_image.jpg", false, false, 90, Bitmap.CompressFormat.JPEG);
 					
-					// grab the file path from the write data
-					String path = (String) result[1];
+					// the success string
+					String success = result[0];
 					
-					// pass the image path to the js interface
-					interfaceJS.PATH = path;
-					
-					Log.i("Path", path);
+					// verify that the operation was a success
+					if (success.equals("true"))
+					{
+						// grab the file path from the write data
+						String path = (String) result[1];
+						
+						// pass the image path to the js interface
+						interfaceJS.PATH = path;
+						
+						// show a toast to the user that the photo was updated
+						(UIFactory.createToast("Photo Updated", false)).show();
+					}
 					
 					/* removed - html img doesn't receive permission to load the file
 					// call method to retrieve the image for the webview

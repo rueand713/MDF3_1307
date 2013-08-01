@@ -1,3 +1,13 @@
+/*
+ * project 		DocuWeb
+ * 
+ * package 		com.randerson.JS
+ * 
+ * @author 		Rueben Anderson
+ * 
+ * date			Aug 1, 2013
+ * 
+ */
 package com.randerson.JS;
 
 import java.util.HashMap;
@@ -55,12 +65,14 @@ public class JSInterface {
 		item.put("time", value[2]);
 		item.put("location", value[3]);
 		item.put("description", value[4]);
+		item.put("timestamp", value[5]);
 		
 		// store the bitmap data into the hashmap
 		item.put("image", PATH);
 		
 		// store the new saved data
 		saveData.putObject(value[0], item);
+		FileSystem.writeObjectFile(CONTEXT, saveData, "save_data", true);
 		
 		// show toast informing the user that the data was saved
 		InterfaceManager UIFactory = new InterfaceManager(CONTEXT);

@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <ListView android:id="@+id/data_list"></ListView>
+    <TextView android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/list_items"
+        android:layout_margin="10dip"
+        style="@style/AppTitle"
+        />
+    
+    <ListView android:id="@+id/data_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></ListView>
 
 </LinearLayout>

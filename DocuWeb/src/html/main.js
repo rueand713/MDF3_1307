@@ -14,6 +14,10 @@ window.addEventListener("DOMContentLoaded", function(){
  function getTextValues()
  {
     var valid = true;
+    
+    // set the time object to the current date timestamp
+    var time = new Date() + "";
+    time = time.substring(0, 16);
    
    // reset the required field borders to normal
     getId("document_name").style.border = "solid black thin";
@@ -28,7 +32,7 @@ window.addEventListener("DOMContentLoaded", function(){
     var note_description= getId("document_description").value;
     
     // create a data array of the string values to pass back to the native code
-    var data = [note_title, note_people, note_time, note_location, note_description];
+    var data = [note_title, note_people, note_time, note_location, note_description, time];
     
     // validate the required strings
     if (note_title == null || note_title.replace(" ", "") == "")
@@ -64,14 +68,14 @@ window.addEventListener("DOMContentLoaded", function(){
  }
  
  // method for setting image tag (removed)
- /*function setImage()
+ function setImage()
  {
     var img = getId("captured_image");
     
     var path = "file:" + Native.getImagePath();
     
     img.setAttribute("src", path);
- }*/
+ }
  
  // create references to the button objects
  var submitButton = getId("submit_button");

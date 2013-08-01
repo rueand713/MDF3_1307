@@ -8,5 +8,12 @@
     <string name="instructions">Select a menu option to get started.</string>
     <string name="copy">&#169; Rueben Anderson 2013</string>
     <string name="blank"></string>
+    <string name="list_items">My Events</string>
+    <string name="name">Event Name</string>
+    <string name="location">Location</string>
+    <string name="with">With</string>
+    <string name="time">Time</string>
+    <string name="details">Details</string>
+    <string name="explorer">Event Explorer</string>
 
 </resources>
